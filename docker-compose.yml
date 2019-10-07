@@ -10,7 +10,7 @@ services:
       - 1880:1880
    
   gpiod:
-    image: gpiod:1.0
+    image: corbosman/node-red-gpiod:dev
     privileged: true
     restart: unless-stopped
     volumes:
