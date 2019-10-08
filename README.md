@@ -9,12 +9,14 @@ Pigpiod is a daemon that lets you control gpio pins over the network, Node-Red p
 
 ## Quick Start
 
-To run this container stand-alone you can start it like this. The daemon is now listening on port 8888 on localhost. 
-Because the daemon needs to access device pins on the Raspberry PI, it is necessary to run the container in privileged mode. 
+To run this container stand-alone you can start it like this:
 
 ```
 docker run -d -p 8888:8888 --privileged --name gpiod corbosman/node-red-gpiod:dev
 ```
+
+The daemon is now listening on port 8888 on localhost. 
+Because the daemon needs to access device pins on the Raspberry PI, it is necessary to run the container in privileged mode. 
 
 To stop it:
 
@@ -24,6 +26,7 @@ docker stop gpiod
 
 This image allows you to pass additional arguments to the daemon. For a list of all available arguments check the [pigpiod](http://abyz.me.uk/rpi/pigpio/pigpiod.html) website.
 Simply add arguments after the image name like so:
+
 
 ```
 docker run -d -p 8888:8888 --privileged --name gpiod corbosman/node-red-gpiod:dev -n 127.0.0.1 -s 2
