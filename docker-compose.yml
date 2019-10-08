@@ -9,10 +9,6 @@ services:
       - 1880:1880
    
   gpiod:
-    image: gpiod:latest
+    image: corbosman/node-red-gpiod:dev
     privileged: true
     restart: unless-stopped
-#    volumes:
-#      - /dev/mem:/dev/mem
-#      - /dev/gpiomem:/dev/gpiomem
-#      - /dev/i2c-1:/dev/i2c-1
