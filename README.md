@@ -4,7 +4,7 @@
 
 __note: this is still in development, feedback is appreciated__
 
-This is a docker image to run [pigpiod](http://abyz.me.uk/rpi/pigpio/pigpiod.html) in a dedicated container on a Raspberry PI. 
+This is a docker image that lets you run [pigpiod](http://abyz.me.uk/rpi/pigpio/pigpiod.html) in a dedicated container on a Raspberry PI. 
 Pigpiod is a daemon that lets you control gpio pins over the network, Node-Red provides [dedicated nodes](https://www.npmjs.com/package/node-red-node-pi-gpiod) that make use of this daemon.
 
 ## Quick Start
