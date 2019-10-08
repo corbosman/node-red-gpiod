@@ -1,19 +1,18 @@
-version: "3"
+version: "3.5"
 
 services:
   node-red:
     image: nodered/node-red
-    restart: unless-stopped
     volumes:
       - /home/pi/.node-red:/data
     ports:
       - 1880:1880
    
   gpiod:
-    image: corbosman/node-red-gpiod:dev
+    image: gpiod:latest
     privileged: true
     restart: unless-stopped
-    volumes:
-      - /dev/mem:/dev/mem
-      - /dev/gpiomem:/dev/gpiomem
-      - /dev/i2c-1:/dev/i2c-1
+#    volumes:
+#      - /dev/mem:/dev/mem
+#      - /dev/gpiomem:/dev/gpiomem
+#      - /dev/i2c-1:/dev/i2c-1

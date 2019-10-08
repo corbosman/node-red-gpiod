@@ -1,5 +1,7 @@
-FROM alpine AS build
+FROM alpine 
 
+STOPSIGNAL 9
+  
 RUN apk --update --no-cache add --virtual build-dependencies build-base && \
     cd /tmp && \
     wget https://github.com/joan2937/pigpio/archive/master.zip && \
@@ -8,6 +10,10 @@ RUN apk --update --no-cache add --virtual build-dependencies build-base && \
     make && \
     sed -i 's/ldconfig/ldconfig \/usr\/local/g' Makefile && \
     make install && \
-    apk del build-dependencies && rm -rf /tmp/*
+    apk del build-dependencies && \
+    rm -rf /tmp/* && \
+    apk --no-cache add tini
 
-CMD rm -rf /var/run/pigpio.pid && sleep 5 && /usr/local/bin/pigpiod -g -a 1
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/sbin/tini", "--", "/entrypoint.sh"]
