@@ -1,18 +1,18 @@
 # node-red-gpiod
 
-[![DockerHub Pull](https://img.shields.io/docker/pulls/corbosman/node-red-gpiod.svg)](https://hub.docker.com/r/corbosman/node-red-gpiod/)
+[![DockerHub Pull](https://img.shields.io/docker/pulls/corbosman/gpiod.svg)](https://hub.docker.com/r/corbosman/gpiod/)
 
 __note: this is still in development, feedback is appreciated__
 
 This is a docker image that lets you run [pigpiod](http://abyz.me.uk/rpi/pigpio/pigpiod.html) in a dedicated container on a Raspberry PI. 
-Pigpiod is a daemon for controlling gpio pins over the network, Node-Red provides [dedicated nodes](https://www.npmjs.com/package/node-red-node-pi-gpiod) that make use of this daemon.
+Pigpiod is a daemon for controlling gpio pins over the network. You can then control these pins remotely through software like Node-Red, which provides [dedicated nodes](https://www.npmjs.com/package/node-red-node-pi-gpiod).
 
 ## Quick Start
 
 To run this container stand-alone you can start it like this:
 
 ```
-docker run -d -p 8888:8888 --privileged --name gpiod corbosman/node-red-gpiod:dev
+docker run -d -p 8888:8888 --privileged --name gpiod corbosman/gpiod:dev
 ```
 
 The daemon is now listening on port 8888 on localhost. 
@@ -29,14 +29,14 @@ Simply add arguments after the image name like so:
 
 
 ```
-docker run -d -p 8888:8888 --privileged --name gpiod corbosman/node-red-gpiod:dev -n 127.0.0.1 -s 2
+docker run -d -p 8888:8888 --privileged --name gpiod corbosman/gpiod:dev -n 127.0.0.1 -s 2
 ```
 
 __note: the options "-g -a 1" are always passed to the daemon"__
 
 ## Running through docker-compose
 
-A better way to run this daemon is by creating a container stack with node-red and possibly other containers like mosquitto. A sample docker-compose.yml can be found in the github repository at https://github.com/corbosman/node-red-gpiod.
+A better way to run this daemon is by creating a container stack with for example node-red and possibly other containers like mosquitto. A sample docker-compose.yml can be found in the github repository at https://github.com/corbosman/node-red-gpiod.
 This allows you to run the pigpiod daemon in a protected network that is only accessible by Node-Red. 
 
 ```
@@ -51,7 +51,7 @@ services:
       - 1880:1880
    
   gpiod:
-    image: corbosman/node-red-gpiod:dev
+    image: corbosman/gpiod:dev
     privileged: true
     restart: unless-stopped
 ```
