@@ -1,6 +1,6 @@
 # node-red-gpiod
 
-[![DockerHub Pull](https://img.shields.io/docker/pulls/corbosman/gpiod.svg)](https://hub.docker.com/r/corbosman/gpiod/)
+[![DockerHub Pull](https://img.shields.io/docker/pulls/corbosman/pigpiod.svg)](https://hub.docker.com/r/corbosman/pigpiod/)
 
 __note: this is still in development, feedback is appreciated__
 
@@ -12,7 +12,7 @@ Pigpiod is a daemon for controlling gpio pins over the network. You can then con
 To run this container stand-alone you can start it like this:
 
 ```
-docker run -d -p 8888:8888 --privileged --name gpiod corbosman/gpiod:dev
+docker run -d -p 8888:8888 --privileged --name gpiod corbosman/pigpiod
 ```
 
 The daemon is now listening on port 8888 on localhost. 
@@ -29,7 +29,7 @@ Simply add arguments after the image name like so:
 
 
 ```
-docker run -d -p 8888:8888 --privileged --name gpiod corbosman/gpiod:dev -n 127.0.0.1 -s 2
+docker run -d -p 8888:8888 --privileged --name gpiod corbosman/pigpiod -n 127.0.0.1 -s 2
 ```
 
 __note: the options "-g -a 1" are always passed to the daemon"__
@@ -51,7 +51,7 @@ services:
       - 1880:1880
    
   gpiod:
-    image: corbosman/gpiod:dev
+    image: corbosman/pigpiod
     privileged: true
     restart: unless-stopped
 ```
